@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'json'
-require 'uri'
+require 'net/http'
 
 post '/' do
   text = params[:text].sub("mtgimg ", "")
