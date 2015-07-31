@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'json'
 
-get '/' do
+post '/' do
   {text: "there"}.to_json
 end
