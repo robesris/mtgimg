@@ -24,6 +24,10 @@ get '/' do
     http.request(req)
   }
   match = res.body.match(/multiverseid%3d([0-9]*)/)
-  multiverseid = match[1]
+  if match
+    multiverseid = match[1]
+  else
+    mutliverseid = res.body
+  end
   {text: multiverseid}.to_json
 end
