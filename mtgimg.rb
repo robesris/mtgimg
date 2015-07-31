@@ -27,8 +27,8 @@ get '/' do
   if match
     multiverseid = match[1]
     image_url = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{multiverseid}&type=card"
+    {text: image_url}.to_json
   else
-    image_url = res.body
+    res.body
   end
-  {text: image_url}.to_json
 end
