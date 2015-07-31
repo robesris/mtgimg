@@ -15,8 +15,8 @@ post '/' do
 end
 
 get '/' do
-  puts params
-  puts params[:text]
+  puts "PARAMS: #{params}"
+  puts "PARAMS[:TEXT]: #{params[:text]}"
   text = params[:text].sub("mtgimg ", "")
   url = URI.parse("http://gatherer.wizards.com/Pages/Search/Default.aspx?name=+[#{text}]")
   req = Net::HTTP::Get.new(url.to_s)
