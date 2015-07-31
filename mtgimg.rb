@@ -1,5 +1,6 @@
 require 'sinatra'
+require 'json'
 
 get '/' do
-  "mtgimg"
+  {hello: "there"}.to_json
 end
