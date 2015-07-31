@@ -11,7 +11,8 @@ post '/' do
   res = Net::HTTP.start(url.host, url.port) {|http|
     http.request(req)
   }
-  match = res.body.match(/multiverseid[^0-9]*([0-9]*)/)
+  match = res.body.match(/multiverseid%3d([0-9]*)/)
+  match = res.body.match(/multiverseid[^0-9]*([0-9]*)/) unless match
   if match
     multiverseid = match[1]
     image_url = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{multiverseid}&type=card"
@@ -30,7 +31,8 @@ get '/' do
   res = Net::HTTP.start(url.host, url.port) {|http|
     http.request(req)
   }
-  match = res.body.match(/multiverseid[^0-9]*([0-9]*)/)
+  match = res.body.match(/multiverseid%3d([0-9]*)/)
+  match = res.body.match(/multiverseid[^0-9]*([0-9]*)/) unless match
   if match
     multiverseid = match[1]
     image_url = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{multiverseid}&type=card"
