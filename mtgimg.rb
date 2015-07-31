@@ -6,7 +6,8 @@ post '/' do
   puts "PARAMS: #{params}"
   puts "PARAMS[:TEXT]: #{params[:text]}"
   text = params[:text].sub("mtgimg ", "")
-  url = URI.parse("http://gatherer.wizards.com/Pages/Search/Default.aspx?name=+[#{text}]")
+  text = text.split.inject(""){|str, word| "#{str}+[#{word}]"}
+  url = URI.parse("http://gatherer.wizards.com/Pages/Search/Default.aspx?name=#{text}")
   req = Net::HTTP::Get.new(url.to_s)
   res = Net::HTTP.start(url.host, url.port) {|http|
     http.request(req)
@@ -26,7 +27,8 @@ get '/' do
   puts "PARAMS: #{params}"
   puts "PARAMS[:TEXT]: #{params[:text]}"
   text = params[:text].sub("mtgimg ", "")
-  url = URI.parse("http://gatherer.wizards.com/Pages/Search/Default.aspx?name=+[#{text}]")
+  text = text.split.inject(""){|str, word| "#{str}+[#{word}]"}
+  url = URI.parse("http://gatherer.wizards.com/Pages/Search/Default.aspx?name=#{text}")
   req = Net::HTTP::Get.new(url.to_s)
   res = Net::HTTP.start(url.host, url.port) {|http|
     http.request(req)
