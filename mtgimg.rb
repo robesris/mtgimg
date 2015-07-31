@@ -2,5 +2,5 @@ require 'sinatra'
 require 'json'
 
 post '/' do
-  {text: "there"}.to_json
+  {text: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=87921&type=card"}.to_json
 end
