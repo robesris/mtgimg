@@ -16,7 +16,11 @@ route :get, :post, '/' do
   if match
     multiverseid = match[1]
     image_url = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{multiverseid}&type=card"
-    {text: image_url}.to_json
+    if request.post?
+      {text: image_url}.to_json
+    else
+      "<html><img src='#{image_url}' /><html>"
+    end
   else
     {text: "Sorry, something went wrong.  It's probably your fault! D:"}
   end
