@@ -1,8 +1,9 @@
 require 'sinatra'
+require 'sinatra/multi_route'
 require 'json'
 require 'net/http'
 
-post '/' do
+route :get, :post, '/' do
   text = params[:text].sub("mtgimg ", "")
   text = text.split.inject(""){|str, word| "#{str}+[#{word}]"}
   url = URI.parse("http://gatherer.wizards.com/Pages/Search/Default.aspx?name=#{text}")
