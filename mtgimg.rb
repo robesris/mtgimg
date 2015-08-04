@@ -18,6 +18,7 @@ end
 
 route :get, :post, '/' do
   text = params[:text].sub("mtgimg ", "")
+  return {text: "https://young-beyond-6765.herokuapp.com/1.png"}.to_json if ["thatdog", "that dog", "lol"].include?(text)
   text = text.split.inject(""){|str, word| "#{str}+[#{word}]"}
   url = URI.parse("http://gatherer.wizards.com/Pages/Search/Default.aspx?name=#{text}")
   req = Net::HTTP::Get.new(url.to_s)
