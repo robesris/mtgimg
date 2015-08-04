@@ -13,7 +13,7 @@ def no_match_message(search_text)
     "Nope.",
     "There's really not that many of these sarcastic messages.  You've probably seen them all already.  Also, your search returned no results."
   ]
-  messages.sample
+  {text: messages.sample}.to_json
 end
 
 route :get, :post, '/' do
@@ -37,6 +37,6 @@ route :get, :post, '/' do
       "<html><img src='#{image_url}' /><html>"
     end
   else
-    {text: "Sorry, something went wrong.  It's probably your fault! D:"}
+    {text: "Sorry, something went wrong.  It's probably your fault! D:"}.to_json
   end
 end
